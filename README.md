@@ -6,7 +6,7 @@ very easy branching
 
 # Branching
 
-draw
+![branching](./img/branching.png)
 
 # Commit access
 
@@ -69,11 +69,26 @@ $ git reset wrong
 
 $ echo 'wrong change' >> good
 
-Files can be changed back to how they were at the last commit by using the command: git checkout <target>. Go ahead and get rid of all the changes since the last commit for octocat.txt
+Files can be changed back to how they were at the last commit by using the command: git checkout <target>. Go ahead and get rid of all the changes since the last commit for 'good'
 
 $ cat good
 $ git checkout good
 $ cat good
+
+### interactive staging
+
+### branching
+
+$ git checkout -b clean_up // branch of current branch
+$ git rm good
+$ git add -A .
+$ git commit -m "clean up"
+
+$ git checkout master
+$ git merge clean_up
+
+$ git branch -D clean_up
+$ git push
 
 # set upstream
 
@@ -86,4 +101,3 @@ This sets the upstream association for any future push/pull attempts automatical
 config
 
 bash_profile
-
