@@ -14,8 +14,8 @@ open source
 
 # https://try.github.io/
 
-$ mkdir repo
-$ cd repo
+$ mkdir git-test-repo
+$ cd git-test-repo
 
 initialize a Git repository
 
@@ -29,7 +29,7 @@ $ git status
 
 It's healthy to run git status often. Sometimes things change and you don't notice it.
 
-$ touch cat.js
+$ touch one.txt
 $ git status
 
 staged:
@@ -44,43 +44,85 @@ Files aren't tracked by Git yet. This usually indicates a newly created file.
 deleted:
 File has been deleted and is waiting to be removed from Git.
 
-$ git add cat.js
+$ git add one.txt
 
 Staging Area:
 A place where we can group files together before we "commit" them to Git.
+
+$ echo line one >> one.txt
+
+$ git status
+
+$ git diff
+
+$ git diff --staged
+
+$ git add one.txt
+
+$ echo line two >> one.txt
 
 $ git add -A .
 
 add all:
 You can also type git add -A . where the dot stands for the current directory, so everything in and beneath it is added. The -A ensures even file deletions are included.
 
+$ git commit -m "added one.txt"
+
+$ git push
+
+$ git remote add origin git@github.com:foxreymann/git-test-repo
+
+# set upstream
+
+One way to avoid having to explicitly do --set-upstream is to use the shorthand flag -u along-with the very first git push as follows:
+
+$ git push -u origin local-branch
+
+This sets the upstream association for any future push/pull attempts automatically.
+
+$ vi ~/.gitconfig
+
+$ vi ~/.bash_profile
+
 ### git reset
 
-$ echo 'moo' > wrong
+$ echo password > secret
 
-$ git add wrong
+$ git add secret
 $ git status
 
 You can unstage files by using the git reset command.
 
-$ git reset wrong
+$ git reset secret
+
+### gitignore
+
+$ echo secret > .gitignore
+
+$ git status
+
+$ git add .
+
+$ git commit -m "ignore the secret file"
 
 ### git checkout
 
-$ echo 'wrong change' >> good
+$ echo 'wrong line' >> one.txt
 
 Files can be changed back to how they were at the last commit by using the command: git checkout <target>. Go ahead and get rid of all the changes since the last commit for 'good'
 
-$ cat good
-$ git checkout good
-$ cat good
+$ cat one.txt
+$ git checkout one.txt
+$ cat one.txt
 
 ### interactive staging
+
+$ git add -p
 
 ### branching
 
 $ git checkout -b clean_up // branch of current branch
-$ git rm good
+$ git rm goodi
 $ git add -A .
 $ git commit -m "clean up"
 
@@ -90,14 +132,23 @@ $ git merge clean_up
 $ git branch -D clean_up
 $ git push
 
-# set upstream
+# merge conflict
 
-One way to avoid having to explicitly do --set-upstream is to use the shorthand flag -u along-with the very first git push as follows:
+### fork
 
-git push -u origin local-branch
+A fork is a copy of a repository.
 
-This sets the upstream association for any future push/pull attempts automatically.
+Used to:
+- propose changes (make a pull request) to someone else's project
+- use someone else's project as a starting point for your own idea.
 
-config
+Power of a fork: io.js story
 
-bash_profile
+Exrx:
+Fork https://github.com/octocat/Spoon-Knife
+Clone
+change index.html
+Make pull request
+See pull request
+
+### pull request
