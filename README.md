@@ -152,3 +152,43 @@ Make pull request
 See pull request
 
 ### pull request
+
+### Continius Deployment
+
+code, copy via ftp
+
+### heroku
+
+revert
+new remote repository just for deployment
+
+$ apt search heroku
+$ sudo apt install heroku
+$ heroku login
+
+fork https://github.com/heroku/node-js-getting-started.git
+
+$ git clone heroku-exrx
+$ heroku create
+$ heroku apps:create heroku-exrx --region eu
+$ git push heroku master
+$ heroku logs --tail
+$ npm i
+$ heroku local web
+$ npm install cool-ascii-faces
+
+$ vi index.js
+
+
+```javascript
+const cool = require('cool-ascii-faces')
+...
+  .get('/cool', (req, res) => res.send(cool()))
+```
+
+$ git status
+$ git add index.js package.json
+$ git commit -m "add cool faces page'
+$ git push
+$ git push heroku master
+$ heroku open cool
