@@ -115,11 +115,7 @@ $ cat one.txt
 $ git checkout one.txt
 $ cat one.txt
 
-### interactive staging
-
-$ git add -p
-
-### branching
+### branching and merging
 
 $ git checkout -b clean_up // branch of current branch
 $ git rm goodi
@@ -132,7 +128,79 @@ $ git merge clean_up
 $ git branch -D clean_up
 $ git push
 
+$ git branch file-two
+$ git checkout file-two
+$ echo
+
 # merge conflict
+
+branch
+modify one
+delete two
+master
+modify one
+modify two
+branch
+merge master into the branch
+make PR between branches on github
+
+# git log
+
+$ git log
+
+By default, with no arguments, git log lists the commits made in that repository in reverse chronological order — that is, the most recent commits show up first. As you can see, this command lists each commit with its SHA-1 checksum, the author’s name and email, the date written, and the commit message.
+
+A huge number and variety of options to the git log command are available to show you exactly what you’re looking for. Here, we’ll show you some of the most popular.
+
+$ git log -p -2
+
+$ gl -p -2
+
+git log per file
+
+$ git log one.txt
+
+see all removed lines in a file
+
+$ git log one.txt | grep ^-
+
+$ git log --graph
+
+see ~/.bash_aliases gl
+
+ The -G flag allows you to search for all commits and only return commits and their files whose changes include that regexp. So it will look
+
+Regex on Commits!! The -G flag allows your to run regex that search both changes in files and filenames and return only matching commits.
+
+$ gl -p -G 'two'
+
+### HEAD
+
+### git reset
+
+git reset --hard HEAD~2
+
+git reset --soft HEAD~2
+
+### git revert
+
+Undo any commit.
+
+$ git revert <SHA>
+
+git revert will create a new commit that’s the opposite (or inverse) of the given SHA..
+
+This is Git’s safest, most basic “undo” scenario, because it doesn’t alter history—so you can now git push the new “inverse” commit to undo your mistaken commit.
+
+$ git log -p
+
+$ git revert <SHA>
+
+git revert changes on removed file
+
+### git checkout
+
+git checkout any file from any commit
 
 ### fork
 
@@ -151,8 +219,6 @@ change index.html
 Make pull request
 See pull request
 
-### pull request
-
 ### Continius Deployment
 
 code, copy via ftp
@@ -162,14 +228,18 @@ code, copy via ftp
 revert
 new remote repository just for deployment
 
+[manual](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
+
 $ apt search heroku
 $ sudo apt install heroku
 $ heroku login
 
 fork https://github.com/heroku/node-js-getting-started.git
 
+rename
+
 $ git clone heroku-exrx
-$ heroku create
+$ heroku local web
 $ heroku apps:create heroku-exrx --region eu
 $ git push heroku master
 $ heroku logs --tail
